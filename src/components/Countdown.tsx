@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/components/Countdown.module.css'
 
-export function Coutdown() {
+export function Coutdown () {
   const [time, setTime] = useState(25 * 60)
   const [isActive, setIsActive] = useState(false)
 
@@ -11,7 +12,7 @@ export function Coutdown() {
   const [minLeft, minRight] = String(minutes).padStart(2, '0').split('')
   const [secLeft, secRight] = String(seconts).padStart(2, '0').split('')
 
-  function startCountdown() {
+  function startCountdown () {
     setIsActive(true)
   }
 
@@ -38,7 +39,6 @@ export function Coutdown() {
       </div>
 
       <button type="button" className={styles.countdownButton} onClick={startCountdown}>
-        Iniciar um ciclo
     </button>
     </div>
   )
