@@ -1,8 +1,13 @@
 // eslint-disable-next-line no-use-before-define
-import React from 'react'
+import React, { useContext } from 'react'
+import { ChallengersContext } from '../contexts/ChallengersContexts'
 import styles from '../styles/components/ChallengerBox.module.css'
 
 export function ChallengerBox () {
+  const contextData = useContext(ChallengersContext)
+
+  console.log(contextData)
+
   const hasActiveChallenger = true
 
   return (
