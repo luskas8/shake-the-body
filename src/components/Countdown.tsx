@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../styles/components/Countdown.module.css'
 
+// eslint-disable-next-line no-undef
+let countdownTimeout: NodeJS.Timeout
+
 export function Coutdown () {
   const [time, setTime] = useState(25 * 60)
   const [isActive, setIsActive] = useState(false)
@@ -16,9 +19,15 @@ export function Coutdown () {
     setIsActive(true)
   }
 
+  function resetCountdown () {
+    clearInterval(countdownTimeout)
+    setIsActive(false)
+    setTime(25 * 60)
+  }
+
   useEffect(() => {
     if (isActive && time > 0) {
-      setTimeout(() => {
+      countdownTimeout = setTimeout(() => {
         setTime(time - 1)
       }, 1000)
     }
@@ -38,15 +47,15 @@ export function Coutdown () {
         </div>
       </div>
       {
-        isActive
+        !isActive
           ? (
-            <button type="button" className={styles.countdownButton} onClick={startCountdown}>
+            <button type="button" className={`${styles.countdownButton} ${styles.newCyclo}`} onClick={startCountdown}>
               Iniciar novo ciclo
             </button>
             )
           : (
-            <button type="button" className={styles.countdownButton} onClick={startCountdown}>
-              Iniciar novo ciclo
+            <button type="button" className={`${styles.countdownButton} ${styles.quitCyclo}`} onClick={resetCountdown}>
+              Abandonar ciclo
             </button>
             )
       }
