@@ -55,6 +55,8 @@
   font-weight: 600;
 
   transition: background-color .2s;
+
+  transition: filter .2s;
 }
 
 .newCyclo {
@@ -81,7 +83,7 @@
 }
 
 .quitCyclo:active {
-  background: var(--red-dark);
+  filter: brightness(0.8);
 }
 
 .countdownButton:disabled {
