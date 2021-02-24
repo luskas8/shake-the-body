@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 
   border: 0;
   border-radius: 5px;
@@ -81,4 +82,10 @@
 
 .quitCyclo:active {
   background: var(--red-dark);
+}
+
+.countdownButton:disabled {
+  color: var(--text);
+  cursor: not-allowed;
+  border-bottom: 5px solid var(--green);
 }
