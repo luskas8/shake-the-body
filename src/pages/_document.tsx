@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-use-before-define
+import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
-  render() {
+  render () {
     return (
       <Html>
         <Head>
