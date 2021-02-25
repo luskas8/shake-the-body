@@ -4,13 +4,13 @@ import React, { createContext, ReactNode, useState } from 'react'
 import challengers from '../../challenges.json'
 
 interface ChallengersProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface Challenger {
-  type: 'body' | 'eye';
-  description: string;
-  amount: number;
+  type: 'body' | 'eye'
+  description: string
+  amount: number
 }
 
 interface ChallengersContextData {

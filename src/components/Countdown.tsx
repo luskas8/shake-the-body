@@ -1,47 +1,15 @@
 // eslint-disable-next-line no-use-before-define
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import styles from '../styles/components/Countdown.module.css'
 import { FaCheckCircle } from 'react-icons/fa'
 import { RiCloseLine, RiPlayFill } from 'react-icons/ri'
-import { ChallengersContext } from '../contexts/ChallengersContexts'
-
-// eslint-disable-next-line no-undef
-let countdownTimeout: NodeJS.Timeout
+import { CountdownContext } from '../contexts/CountdownContext'
 
 export function Coutdown () {
-  const { startNewChallenger } = useContext(ChallengersContext)
-
-  const [time, setTime] = useState(0.05 * 60)
-  const [isActive, setIsActive] = useState(false)
-  const [hasFinished, setHasFinished] = useState(false)
-
-  const minutes = Math.floor(time / 60)
-  const seconts = time % 60
+  const { minutes, seconts, hasFinished, isActive, resetCountdown, startCountdown } = useContext(CountdownContext)
 
   const [minLeft, minRight] = String(minutes).padStart(2, '0').split('')
   const [secLeft, secRight] = String(seconts).padStart(2, '0').split('')
-
-  function startCountdown () {
-    setIsActive(true)
-  }
-
-  function resetCountdown () {
-    clearInterval(countdownTimeout)
-    setIsActive(false)
-    setTime(0.05 * 60)
-  }
-
-  useEffect(() => {
-    if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => {
-        setTime(time - 1)
-      }, 1000)
-    } else if (isActive && time === 0) {
-      setHasFinished(true)
-      setIsActive(false)
-      startNewChallenger()
-    }
-  }, [isActive, time])
 
   return (
     <div>
