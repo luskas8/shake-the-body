@@ -1,10 +1,22 @@
 // eslint-disable-next-line no-use-before-define
 import React, { useContext } from 'react'
 import { ChallengersContext } from '../contexts/ChallengersContexts'
+import { CountdownContext } from '../contexts/CountdownContext'
 import styles from '../styles/components/ChallengerBox.module.css'
 
 export function ChallengerBox () {
   const { activeChallenger, resetChallenger, completeChallenger } = useContext(ChallengersContext)
+  const { resetCountdown } = useContext(CountdownContext)
+
+  function doneChallender () {
+    completeChallenger()
+    resetCountdown()
+  }
+
+  function failChallenger () {
+    resetChallenger()
+    resetCountdown()
+  }
 
   return (
     <div className={styles.challengerBoxContainer}>
@@ -24,14 +36,14 @@ export function ChallengerBox () {
                 <button
                   type="button"
                   className={`${styles.challengerFailedButton}`}
-                  onClick={resetChallenger}
+                  onClick={failChallenger}
                 >
                   Falhei
                 </button>
                 <button
                   type="button"
                   className={`${styles.challengerSucceededButton}`}
-                  onClick={completeChallenger}
+                  onClick={doneChallender}
                 >
                   Completei
                 </button>
