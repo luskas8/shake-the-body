@@ -8,6 +8,7 @@ import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import styles from '../styles/pages/Home.module.css'
 import { ChallengerBox } from '../components/ChallengerBox'
+import { CountdownProvider } from '../contexts/CountdownContext'
 
 export default function Home () {
   return (
@@ -15,16 +16,18 @@ export default function Home () {
       <Head><title>Início | Shake the Body</title></Head>
       <ExperienceBar />
 
-      <section>
-        <div>
-          <Profile />
-          <CompletedChallengers />
-          <Coutdown />
-        </div>
-        <div>
-          <ChallengerBox />
-        </div>
-      </section>
+      <CountdownProvider>
+        <section>
+          <div>
+            <Profile />
+            <CompletedChallengers />
+            <Coutdown />
+          </div>
+          <div>
+            <ChallengerBox />
+          </div>
+        </section>
+      </CountdownProvider>
     </div>
   )
 }
