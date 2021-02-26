@@ -1,10 +1,13 @@
 // eslint-disable-next-line no-use-before-define
 import React, { createContext, ReactNode, useEffect, useState } from 'react'
-
+import Cookies from 'js-cookie'
 import challengers from '../../challenges.json'
 
 interface ChallengersProviderProps {
   children: ReactNode
+  level: number
+  currentExperience: number
+  challengersCompleted: number
 }
 
 interface Challenger {
@@ -27,10 +30,10 @@ interface ChallengersContextData {
 
 export const ChallengersContext = createContext({} as ChallengersContextData)
 
-export function ChallengersProvider ({ children }: ChallengersProviderProps) {
-  const [level, setLevel] = useState(1)
-  const [currentExperience, setCurrentExperience] = useState(0)
-  const [challengersCompleted, setChallengersCompleted] = useState(0)
+export function ChallengersProvider ({ children, ...rest }: ChallengersProviderProps) {
+  const [level, setLevel] = useState(rest.level ?? 1)
+  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0)
+  const [challengersCompleted, setChallengersCompleted] = useState(rest.challengersCompleted ?? 0)
   const [activeChallenger, setActiveChallenger] = useState(null)
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
@@ -38,6 +41,12 @@ export function ChallengersProvider ({ children }: ChallengersProviderProps) {
   useEffect(() => {
     Notification.requestPermission()
   }, [])
+
+  useEffect(() => {
+    Cookies.set('level', String(level))
+    Cookies.set('currentExperience', String(currentExperience))
+    Cookies.set('challengersCompleted', String(challengersCompleted))
+  }, [level, currentExperience, challengersCompleted])
 
   function levelUp () {
     setLevel(level + 1)
