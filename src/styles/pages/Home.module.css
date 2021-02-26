@@ -17,3 +17,12 @@
  align-content: center;
 }
 
+@media (max-width: 679.99px) {
+  .container section {
+    margin-top: 5rem;
+
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1ft);
+    padding-bottom: 3rem;
+  }
+}

@@ -26,6 +26,12 @@
   }
 }
 
+@media (max-width: 479.99px) {
+  html {
+    font-size: 75.5%;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
