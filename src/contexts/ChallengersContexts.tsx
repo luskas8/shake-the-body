@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-use-before-define
-import React, { createContext, ReactNode, useState } from 'react'
+import React, { createContext, ReactNode, useEffect, useState } from 'react'
 
 import challengers from '../../challenges.json'
 
@@ -35,6 +35,10 @@ export function ChallengersProvider ({ children }: ChallengersProviderProps) {
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
+  useEffect(() => {
+    Notification.requestPermission()
+  }, [])
+
   function levelUp () {
     setLevel(level + 1)
   }
@@ -44,6 +48,16 @@ export function ChallengersProvider ({ children }: ChallengersProviderProps) {
     const challenger = challengers[randomChallengerIndex]
 
     setActiveChallenger(challenger)
+
+    new Audio('/notification.mp3').play()
+
+    if (Notification.permission === 'granted') {
+      console.log('AAAA')
+      // eslint-disable-next-line no-new
+      new Notification('Novo desafio 🎉', {
+        body: `Valendo ${challenger.amount} xp!`
+      })
+    }
   }
 
   function resetChallenger () {
