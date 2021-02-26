@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta http-equiv="Content-Language" content="pt-br">
+          <meta http-equiv="Content-Language" content="pt-br" />
           
           <link rel="shortcut icon" href="favicon.png" type="image/png"/>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
